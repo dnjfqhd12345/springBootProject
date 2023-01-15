@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor</title>
+</head>
+<textarea name="editor1">안녕하슈</textarea>
+
+<script src="https://cdn.ckeditor.com/4.9.2/standard-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor1', {
+        extraPlugins: 'codesnippet'
+    });
+</script>
+</html>

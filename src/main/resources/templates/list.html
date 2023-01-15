@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{/index.html}">
+
+<div layout:fragment="content">
+    <div class="h1 text-dark border-bottom border-secondary mw-100 ">
+        <div class="row">
+        <div class="h1 col-lg-6 text-lg-start fw-lighter">메인 페이지</div>
+            <div class="col-lg-6 text-lg-end">
+            <ol class="breadcrumb fs-6 justify-content-end align-bottom">
+                <li class="breadcrumb-item"><a th:href="@{/}">홈으로</a></li>
+                <!--<li class="breadcrumb-item active" aria-current="page">게시판</li> -->
+            </ol>
+                </div>
+            </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <div class="shadow-sm card">
+                <dv class="card-header">
+                    소개글
+                </dv>
+                <div class="card-body">
+                    <h2 class="card-title">전산쟁이의 개발실에 오신 것을 환영합니다! </h2>
+                    <br>
+                    <p><samp>안녕하세요! &lt;전산쟁이 개발실&gt; 커뮤니티를 만든 전산쟁이입니다!!</samp></p>
+
+                    <p><samp>프로그래머나 프로그래밍에 관심이 있는 사람들이 모여 편안하게 서로 이야기를 나눌 공간을 만들어보고 싶어서 웹사이트를 제작하게 되었습니다.</samp></p>
+
+                    <p><samp>이 웹사이트는 자신이 작성한 코드 대해서 어디서 잘못 되었는지 피드백을 받거나 서로 토론하거나 프로그래밍 하다가 지쳤을 때 자유롭게 수다를 떨 수 있는 편안한 공간이라고 생각하시면 됩니다.</samp></p>
+
+                    <p><samp>오늘도&nbsp;웹사이트를 방문해주셔서 감사합니다.</samp></p>
+
+                    <p>웹페이지 기술 스택: <em><strong>Spring Boot, Maria DB, JPA, Thymeleaf, Bootstrap, CKEditor4</strong></em></p>
+
+                    <p>&nbsp;</p>
+
+                    <p><strong>&lt;전산쟁이의 개발실&gt;</strong> 커뮤니티 이용수칙입니다.</p>
+
+                    <p>1. 각 게시판의 성격에 맞게 글을 게시해주세요.</p>
+
+                    <p>2. 편안한 공간이 될 수 있도록 서로 배려해주세요.</p>
+
+                    <p>3. 분쟁이나 논란이 되는 글을 작성 시에 통보없이 삭제/탈퇴 처리가 될 수 있어요.</p>
+
+                    <p>4. 이미지는 URL 형식으로만 올리실 수 있어요. (DB 용량이 적어서 죄송합니다 ㅜ)</p>
+
+                    <p>&nbsp;</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <div class="shadow-sm card">
+                <dv class="card-header">
+                    공지사항
+                </dv>
+                <div class="card-body">
+                    <h5 class="card-title">공지사항</h5>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-center">
+                            <th scope="col">글 번호</th>
+                            <th scope="col" style="width:50%">제목</th>
+                            <th>글쓴이</th>
+                            <th scope="col">작성일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" th:each="question, loop : ${paging}">
+                            <td th:text="${loop.count}"></td>
+                            <td>
+                                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                            </td>
+                            <td><span th:if="${question.author != null}" th:text="${question.author.nickname}"></span></td>
+                            <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- <a th:href="@{/question/create}" class="btn btn-outline-secondary">글작성</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
