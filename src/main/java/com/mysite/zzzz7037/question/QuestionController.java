@@ -46,9 +46,9 @@ public class QuestionController {
         if(category.equals("notice")){
             topic = "공지사항";
         } else if(category.equals("sw")) {
-            topic = "S/W 토론";
+            topic = "S/W";
         }else if(category.equals("hw")) {
-            topic = "H/W 토론";
+            topic = "H/W";
         }else if(category.equals("develope")) {
             topic = "개발실";
         }else if(category.equals("free")) {
@@ -63,6 +63,8 @@ public class QuestionController {
         model.addAttribute("topic",topic);
         model.addAttribute("category",category);
         model.addAttribute("kw", kw);
+        if(category.equals("notice"))
+            return "question_notice";
         return "question_list";
     }
 
